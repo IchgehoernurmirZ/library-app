@@ -11,7 +11,6 @@ export const Footer = () => {
             </li>
             <li className="nav-item">
               <a href="#" className="nav-link px-2 text-white">
-                {" "}
                 Search Books
               </a>
             </li>
