@@ -1,15 +1,32 @@
 class BookModel {
-    book_name: string;
-    ISBN: string;
-    author_name: string;
-    qty: number;
+  id: number;
+  title: string;
+  author?: string;
+  description: string;
+  copies?: number;
+  copiesAvailable?: number;
+  category: string;
+  img?: string;
 
-    constructor(book_name: string, ISBN: string, author_name: string, qty: number) {
-        this.book_name = book_name;
-        this.ISBN = ISBN;
-        this.author_name = author_name;
-        this.qty = qty;
-    }
+  constructor(
+    id: number,
+    title: string,
+    author: string,
+    description: string,
+    copies: number,
+    copiesAvailable: number,
+    category: string,
+    img: string
+  ) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.description = description;
+    this.copies = copies;
+    this.copiesAvailable = copiesAvailable;
+    this.category = category;
+    this.img = img;
+  }
 }
 
 export default BookModel;
