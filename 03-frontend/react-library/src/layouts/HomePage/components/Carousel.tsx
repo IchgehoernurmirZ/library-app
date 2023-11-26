@@ -1,6 +1,38 @@
-import { ReturnBook } from "./ReturnBook"
+import { ReturnBook } from "./ReturnBook";
+import { useEffect, useState } from "react";
+import BookModel from "../../../models/BookModel";
 
 export const Carousel = () => {
+
+  const [books, setBooks] = useState<BookModel[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState(null);
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      const baseUrl: string = "https://smooth-comfort-405104.uc.r.appspot.com";
+
+      const url: string = `${baseUrl}/document/findAll/books`;
+
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error("Something went wrong!")
+      }
+
+      const responseJson = await response.json();
+
+      const responseData = responseJson._embedded.books;
+
+      const loadedBooks: BookModel[] = [];
+
+    };
+    fetchBooks().catch((error: any) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    })
+  }, []);
+
     return (
       <div className="container mt-5" style={{ height: 550 }}>
         <div className="homepage-carousel-title">
