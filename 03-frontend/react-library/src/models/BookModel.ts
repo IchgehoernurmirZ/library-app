@@ -5,7 +5,7 @@ class BookModel {
   description: string;
   copies?: number;
   copiesAvailable?: number;
-  category: string;
+  category?: string;
   img?: string;
 
   constructor(
