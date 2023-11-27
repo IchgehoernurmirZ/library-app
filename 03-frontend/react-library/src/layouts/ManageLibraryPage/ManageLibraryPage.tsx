@@ -1,7 +1,7 @@
 import { useOktaAuth } from "@okta/okta-react"
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { AddNewBook } from "./AddNewBook";
+import { AddNewBook } from "./components/AddNewBook";
 
 export const ManageLibraryPage = () => {
     const { authState } = useOktaAuth();
