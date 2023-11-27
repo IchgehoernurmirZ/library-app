@@ -1,6 +1,7 @@
 import { useOktaAuth } from "@okta/okta-react"
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
+import { AddNewBook } from "./AddNewBook";
 
 export const ManageLibraryPage = () => {
     const { authState } = useOktaAuth();
@@ -44,7 +45,7 @@ export const ManageLibraryPage = () => {
                 aria-controls="nav-add-book"
                 aria-selected="false"
               >
-                Add new book
+                <AddNewBook/>
               </button>
               <button
                 onClick={changeQtyOfBooksClickFunction}
