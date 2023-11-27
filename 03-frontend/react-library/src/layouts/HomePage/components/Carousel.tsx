@@ -10,9 +10,8 @@ export const Carousel = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const baseUrl: string = "https://smooth-comfort-405104.uc.r.appspot.com";
-
-      const url: string = `${baseUrl}/document/findAll/books`;
+      const baseUrl: string = "http://localhost:8080/api/books";
+      const url: string = `${baseUrl}?page=0&sign=9`;
 
       const response = await fetch(url);
 
@@ -26,7 +25,23 @@ export const Carousel = () => {
 
       const loadedBooks: BookModel[] = [];
 
+      for (const key in responseData) {
+        loadedBooks.push({
+          id: responseData[key].id,
+          title: responseData[key].title,
+          author: responseData[key].author,
+          description: responseData[key].description,
+          copies: responseData[key].copies,
+          copiesAvailable: responseData[key].copiesAvailable,
+          category: responseData[key].category,
+          img: responseData[key].img,
+        });
+      }
+
+      setBooks(loadedBooks);
+      setIsLoading(false);
     };
+
     fetchBooks().catch((error: any) => {
       setIsLoading(false);
       setHttpError(error.message);
