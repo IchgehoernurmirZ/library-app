@@ -9,7 +9,7 @@ export const AddNewBook = () => {
     const [author, setAuthor] = useState('');
     const [description, setDescription] = useState('');
     const [copies, setCopies] = useState(0);
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState('Category');
     const [selectedImage, setSelectedImage] = useState<any>(null);
 
     const [displaySuccess, setDisplaySuccess] = useState(false);
