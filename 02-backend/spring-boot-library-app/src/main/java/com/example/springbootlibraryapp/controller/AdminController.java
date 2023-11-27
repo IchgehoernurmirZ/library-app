@@ -21,4 +21,9 @@ public class AdminController {
     public void postBook(@RequestBody AddBookRequest addBookRequest) throws Exception {
         adminService.postBook(addBookRequest);
     }
+
+    @PutMapping("/secure/increase/book/quantity")
+    public void increaseBookQuantity(@RequestParam Long bookId) throws Exception {
+        adminService.increaseBookQuantity(bookId);
+    }
 }
