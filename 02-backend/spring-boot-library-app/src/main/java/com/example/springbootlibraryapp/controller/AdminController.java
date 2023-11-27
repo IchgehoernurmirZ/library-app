@@ -31,4 +31,9 @@ public class AdminController {
     public void decreaseBookQuantity(@RequestParam Long bookId) throws Exception {
         adminService.decreaseBookQuantity(bookId);
     }
+
+    @DeleteMapping("/delete/book")
+    public void deleteBook(@RequestParam Long bookId) throws Exception {
+        adminService.deleteBook(bookId);
+    }
 }

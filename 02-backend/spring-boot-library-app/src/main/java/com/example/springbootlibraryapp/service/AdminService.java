@@ -58,4 +58,15 @@ public class AdminService {
         book.setImg(addBookRequest.getImg());
         bookRepository.save(book);
     }
+
+    public void deleteBook(Long bookId) throws Exception {
+
+        Optional<Book> book = bookRepository.findById(bookId);
+
+        if (book.isEmpty()) {
+            throw new Exception("Book not found");
+        }
+
+        bookRepository.delete(book.get());
+    }
 }
