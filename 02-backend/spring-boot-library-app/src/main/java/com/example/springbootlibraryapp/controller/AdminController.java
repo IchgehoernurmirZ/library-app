@@ -26,4 +26,9 @@ public class AdminController {
     public void increaseBookQuantity(@RequestParam Long bookId) throws Exception {
         adminService.increaseBookQuantity(bookId);
     }
+
+    @PutMapping("/secure/decrease/book/quantity")
+    public void decreaseBookQuantity(@RequestParam Long bookId) throws Exception {
+        adminService.decreaseBookQuantity(bookId);
+    }
 }
