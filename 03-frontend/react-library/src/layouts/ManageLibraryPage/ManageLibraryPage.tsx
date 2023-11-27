@@ -24,7 +24,7 @@ export const ManageLibraryPage = () => {
     }
 
     if (authState?.accessToken?.claims.userType === undefined) {
-        return <Redirect to="/home"/>
+        return <Redirect to="/admin"/>
     }
 
     return (
