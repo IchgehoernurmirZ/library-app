@@ -1,5 +1,6 @@
 import { useOktaAuth } from "@okta/okta-react"
 import { useState } from "react";
+import AddBookRequest from "../../models/AddBookRequest";
 
 export const AddNewBook = () => {
     const {authState} = useOktaAuth();
@@ -34,6 +35,42 @@ export const AddNewBook = () => {
         }
         reader.onerror = function (error) {
             console.log('Error', error)
+        }
+    }
+
+    async function submitNewBook() {
+        const url = `http://localhost:9090/api/admin/add/book`;
+        if (authState?.isAuthenticated && title !== '' && title !== '' && category !== 'Category' && description !== '' && copies >= 0) {
+            const book: AddBookRequest = new AddBookRequest(
+              title,
+              author,
+              description,
+              copies,
+              category
+            );
+            book.img = selectedImage;
+            const requestOptions = {
+                method: 'POST',
+                'Content-Type': 'application/json',
+                body: JSON.stringify(book)
+            };
+
+            const submitNewBookResponse = await fetch(url, requestOptions);
+
+            if(!submitNewBookResponse.ok) {
+                throw new Error ('Something went wrong!')
+            }
+            setTitle('');
+            setAuthor('');
+            setDescription('');
+            setCopies(0);
+            setCategory('Category');
+            setSelectedImage('');
+            setDisplayWarning(false);
+            setDisplaySuccess(true);
+        } else {
+            setDisplayWarning(true);
+            setDisplaySuccess(false);
         }
     }
  
@@ -150,7 +187,7 @@ export const AddNewBook = () => {
               </div>
               <input type="file" onChange={e => base64ConversionForImages(e)}/>
               <div>
-                <button type="button" className="btn btn-primary mt-3">
+                <button type="button" className="btn btn-primary mt-3" onClick={submitNewBook}>
                     Add Book
                 </button>
               </div>
