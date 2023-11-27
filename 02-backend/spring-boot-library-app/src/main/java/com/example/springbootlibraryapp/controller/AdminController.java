@@ -22,12 +22,12 @@ public class AdminController {
         adminService.postBook(addBookRequest);
     }
 
-    @PutMapping("/secure/increase/book/quantity")
+    @PutMapping("/increase/book/quantity")
     public void increaseBookQuantity(@RequestParam Long bookId) throws Exception {
         adminService.increaseBookQuantity(bookId);
     }
 
-    @PutMapping("/secure/decrease/book/quantity")
+    @PutMapping("/decrease/book/quantity")
     public void decreaseBookQuantity(@RequestParam Long bookId) throws Exception {
         adminService.decreaseBookQuantity(bookId);
     }
