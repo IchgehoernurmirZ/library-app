@@ -45,7 +45,7 @@ export const ManageLibraryPage = () => {
                 aria-controls="nav-add-book"
                 aria-selected="false"
               >
-                <AddNewBook/>
+                Add new book
               </button>
               <button
                 onClick={changeQtyOfBooksClickFunction}
@@ -80,9 +80,9 @@ export const ManageLibraryPage = () => {
               className="tab-pane fade show active"
               id="nav-add-book"
               role="tabpanel"
-              aria-aria-labelledby="nav-add-book-tab"
+              aria-labelledby="nav-add-book-tab"
             >
-              Add new book
+              <AddNewBook/>
             </div>
             <div
               className="tab-pane fade"
