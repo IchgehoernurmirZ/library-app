@@ -24,21 +24,23 @@ export const App = () => {
   }
 
   return (
-    <div>
+    <div className="d-flex flex-column min-vh-100">
       <Security
         oktaAuth={oktaAuth}
         restoreOriginalUri={restoreOriginalUri}
         onAuthRequired={customAuthHandler}
       >
         <Navbar />
-        <Switch>
-          <Route path="/" exact>
-            <Redirect to="/home" />
-          </Route>
-          <Route path="/home">
-            <HomePage />
-          </Route>
-        </Switch>
+        <div className="flex-grow-1">
+          <Switch>
+            <Route path="/" exact>
+              <Redirect to="/home" />
+            </Route>
+            <Route path="/home">
+              <HomePage />
+            </Route>
+          </Switch>
+        </div>
         <Footer />
         <Route
           path="/login"
