@@ -10,7 +10,7 @@ export const AddNewBook = () => {
     const [description, setDescription] = useState('');
     const [copies, setCopies] = useState(0);
     const [category, setCategory] = useState("");
-    const [selectedImage, setSelectedImage] = useState('');
+    const [selectedImage, setSelectedImage] = useState<any>(null);
 
     const [displaySuccess, setDisplaySuccess] = useState(false);
     const [displayWarning, setDisplayWarning] = useState(false);
@@ -20,8 +20,8 @@ export const AddNewBook = () => {
     }
 
     async function base64ConversionForImages(e: any) {
-        if (e.target.files(0)) {
-            getBase64(e.target.files(0))
+        if (e.target.files[0]) {
+            getBase64(e.target.files[0])
         }
 
         
@@ -31,7 +31,7 @@ export const AddNewBook = () => {
         let reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-            setSelectedImage(String(reader.result));
+            setSelectedImage(reader.result);
         }
         reader.onerror = function (error) {
             console.log('Error', error)
@@ -39,7 +39,7 @@ export const AddNewBook = () => {
     }
 
     async function submitNewBook() {
-        const url = `http://localhost:9090/api/admin/add/book`;
+        const url = `http://localhost:8080/api/admin/add/book`;
         if (authState?.isAuthenticated && title !== '' && title !== '' && category !== 'Category' && description !== '' && copies >= 0) {
             const book: AddBookRequest = new AddBookRequest(
               title,
@@ -50,9 +50,11 @@ export const AddNewBook = () => {
             );
             book.img = selectedImage;
             const requestOptions = {
-                method: 'POST',
-                'Content-Type': 'application/json',
-                body: JSON.stringify(book)
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(book),
             };
 
             const submitNewBookResponse = await fetch(url, requestOptions);
@@ -65,7 +67,7 @@ export const AddNewBook = () => {
             setDescription('');
             setCopies(0);
             setCategory('Category');
-            setSelectedImage('');
+            setSelectedImage(null);
             setDisplayWarning(false);
             setDisplaySuccess(true);
         } else {
