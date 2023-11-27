@@ -7,6 +7,21 @@ export const ManageLibraryPage = () => {
     const [changeQtyOfBooksClick, setChangeQtyOfBooksClick] = useState(false);
     const [messagesClick, setMessagesClick] = useState(false);
 
+    function addBookClickFunction() {
+        setChangeQtyOfBooksClick(false);
+        setMessagesClick(false)
+    }
+
+    function changeQtyOfBooksClickFunction() {
+        setChangeQtyOfBooksClick(true);
+        setMessagesClick(false);
+    }
+
+    function messagesClickFunction() {
+        setChangeQtyOfBooksClick(false);
+        setMessagesClick(true);
+    }
+
     return (
       <div className="container">
         <div className="mt-5">
@@ -14,6 +29,7 @@ export const ManageLibraryPage = () => {
           <nav>
             <div className="nav nav-tabs" id="nav-tab" role="tab-list">
               <button
+                onClick={addBookClickFunction}
                 className="nav-link active"
                 id="nav-add-book-tab"
                 data-bs-toggle="tab"
@@ -26,6 +42,7 @@ export const ManageLibraryPage = () => {
                 Add new book
               </button>
               <button
+                onClick={changeQtyOfBooksClickFunction}
                 className="nav-link"
                 id="nav-quantity-tab"
                 data-bs-toggle="tab"
@@ -38,6 +55,7 @@ export const ManageLibraryPage = () => {
                 Change quantity
               </button>
               <button
+                onClick={messagesClickFunction}
                 className="nav-link"
                 id="nav-messages-tab"
                 data-bs-toggle="tab"
@@ -66,10 +84,15 @@ export const ManageLibraryPage = () => {
               role="tabpanel"
               aria-labelledby="nav-quantity-tab"
             >
-              Change quantity
+              {changeQtyOfBooksClick ? <>Change Quantity</> : <></>}
             </div>
-            <div className="tab-pane fade" id="nav-messages" role="tabpanel" aria-labelledby="nav-messages-tab">
-                Admin messages
+            <div
+              className="tab-pane fade"
+              id="nav-messages"
+              role="tabpanel"
+              aria-labelledby="nav-messages-tab"
+            >
+              {messagesClick ? <>Admin Message</> : <></>}
             </div>
           </div>
         </div>

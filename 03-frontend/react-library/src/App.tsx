@@ -6,8 +6,9 @@ import { HomePage } from './layouts/HomePage/HomePage';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { oktaConfig } from './lib/oktaConfig';
 import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js'
-import { LoginCallback, Security } from '@okta/okta-react';
+import { LoginCallback, SecureRoute, Security } from '@okta/okta-react';
 import LoginWidget from './Auth/LoginWidget';
+import { ManageLibraryPage } from './layouts/ManageLibraryPage/ManageLibraryPage';
 
 const oktaAuth = new OktaAuth(oktaConfig);
 
@@ -39,6 +40,9 @@ export const App = () => {
             <Route path="/home">
               <HomePage />
             </Route>
+            <SecureRoute path="/admin">
+              <ManageLibraryPage />
+            </SecureRoute>
           </Switch>
         </div>
         <Footer />
